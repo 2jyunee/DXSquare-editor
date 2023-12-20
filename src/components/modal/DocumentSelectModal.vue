@@ -22,7 +22,11 @@
                 v-for="(item, idx) of documentList"
                 :key="idx"
                 @click="selectItem(item)"
-                :class="[documentPicked === item.id ? 'hover:bg-zinc-200 hover:text-black bg-emerald-500 text-white' : 'hover:bg-zinc-200 hover:text-black']"
+                :class="[
+                  documentPicked === item.id
+                    ? 'hover:bg-zinc-200 hover:text-black bg-emerald-500 text-white'
+                    : 'hover:bg-zinc-200 hover:text-black'
+                ]"
               >
                 <td class="hide">
                   <input
@@ -84,12 +88,11 @@ const confirm = () => {
 }
 
 const selectItem = (item) => {
-  debugger;
+  debugger
   documentPicked.value = item.id
   documentPickedItem.value = item
   selectedTrClass.value += ' bg-emerald-500 text-white'
 }
-
 </script>
 
 <style scoped>

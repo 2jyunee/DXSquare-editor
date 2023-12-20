@@ -8,6 +8,11 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  optimizeDeps: {
+    esbuildOptions: {
+        target: "esnext",
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
