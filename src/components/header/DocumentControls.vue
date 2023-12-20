@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white pt-2 pb-2 pl-5 pr-5 border">
+  <div class="bg-white pt-2 pb-2 pl-5 pr-5 border"  style="font-size: 35px;">
     <div class="flex flex-nowrap justify-between md:px-10 px-4">
       <div class="title space-x-3">
         <span>{{ documentTitle || '무제' }}</span>
       </div>
-      <div class="doc-control-1 space-x-3">
-        <select class="pt-0.5 pr-10 pb-0.5 pl-2.5" name="zoom-value">
+      <div class="doc-control-1 space-x-5">
+        <select class="pt-0.5 pr-10 pb-0.5 pl-2.5" name="zoom-value" v-show="false">
           <option value="50">50%</option>
           <option value="75">75%</option>
           <option value="90">90%</option>

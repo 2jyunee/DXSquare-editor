@@ -2,7 +2,7 @@
   <!-- Header -->
   <!-- <div class="relative bg-emerald-600 md:pt-32 pb-32 pt-12"> -->
   <!-- <div class="px-4 md:px-10 mx-auto w-full"> -->
-  <div class="border p-4 m-4 bg-white shadow-md">
+  <div class="border p-4 m-4 bg-white shadow-md" style="border-radius: 10px;">
     <!-- Card stats -->
     <!-- <DocumentControls></DocumentControls> -->
 
@@ -34,7 +34,7 @@
           </div>
         </div> -->
 
-    <div class="flex justify-between" v-show="props.isShow">
+    <div class="flex justify-center" v-show="props.isShow">
       <div class="px-4">
         <card-stats
           compId="comp-input"
