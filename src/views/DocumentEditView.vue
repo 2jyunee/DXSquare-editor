@@ -8,7 +8,7 @@
       <Sidebar />
       <div class="main-container">
         <!-- <div class="relative bg-squarePurple-100 md:pt-32 pb-32 pt-12"> -->
-        <div class="relative bg-transparent pb-32 pt-2">
+        <div class="bg-transparent pb-32 pt-2">
           <!-- <div class="px-4 md:px-10 mx-auto w-full"> -->
           <div class="w-full">
             <header-stats :isShow="serviceStore.getCreateBarStatus()" />

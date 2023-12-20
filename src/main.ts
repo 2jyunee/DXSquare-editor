@@ -20,6 +20,7 @@ import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import VueFroala from 'vue-froala-wysiwyg'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import App from './App.vue'
 import router from './router'
@@ -29,6 +30,7 @@ const app = createApp(App)
 app.use(createPinia().use(piniaPluginPersistedstate))
 app.use(router)
 app.use(VueFroala)
+app.use(CKEditor)
 // app.use(html2pdf)
 
 app.mount('#app')
