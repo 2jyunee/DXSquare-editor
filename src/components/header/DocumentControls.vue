@@ -56,6 +56,7 @@ const toggleIconClass = ref('fa-regular fa-hand-pointer')
 const documentTitle = templateStore.getSelectTemplateName()
 
 const showSaveModal = () => {
+  debugger
   let isShowCreateBar = serviceStore.getCreateBarStatus()
   if (isShowCreateBar) {
     saveDocToHtml()
@@ -107,16 +108,16 @@ const saveDocToHtml = () => {
 }
 
 const saveTemplate = (title) => {
-  const editorHtmlElem = document.getElementsByClassName('fr-element')
+  const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
   isShowSaveModal.value = false
-  htmlToCanvas(editorHtmlElem[0]).then((canvas) => {
+  htmlToCanvas(editorHtmlElem).then((canvas) => {
     const t = canvas.toDataURL()
     console.log(t)
     const imageObj: ItemplateImg = {
       id: `${title}_${new Date().getTime()}`,
       imgDataStr: t,
       fileName: title,
-      htmlStr: editorHtmlElem[0].innerHTML
+      htmlStr: editorHtmlElem.innerHTML
     }
 
     templateStore.saveTemplate(imageObj)
