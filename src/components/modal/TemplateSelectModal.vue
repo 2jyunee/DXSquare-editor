@@ -35,10 +35,14 @@
             </thead>
             <tbody>
               <tr
-                :class="selectedTrClass"
                 v-for="(item, idx) of templateList"
                 :key="idx"
                 @click="selectItem(item)"
+                :class="[
+                  templatePicked === item.id
+                    ? 'hover:bg-zinc-200 hover:text-black bg-emerald-500 text-white'
+                    : 'hover:bg-zinc-200 hover:text-black'
+                ]"
               >
                 <td class="hide">
                   <input

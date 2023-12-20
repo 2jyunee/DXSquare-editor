@@ -83,12 +83,10 @@ const closeModal = () => {
 }
 
 const confirm = () => {
-  debugger
   emit('confirm', documentPickedItem.value)
 }
 
 const selectItem = (item) => {
-  debugger
   documentPicked.value = item.id
   documentPickedItem.value = item
   selectedTrClass.value += ' bg-emerald-500 text-white'

@@ -7,11 +7,7 @@
       class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
     >
       <!-- Brand -->
-      <img class="lg:inline-block" :src="SignSquareLogo" width="130" />
-      <!-- <a
-        class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-        href="javascript:void(0)"
-      ></a>-->
+      <img class="lg:inline-block" :src="SignSquareLogo" width="130" @click="moveIndexPage" />
       <!-- Form -->
       <!-- <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
         <div class="relative flex w-full flex-wrap items-stretch">
@@ -39,4 +35,10 @@
 <script setup lang="ts">
 import UserDropdown from '@/components/dropdown/UserDropdown.vue'
 import SignSquareLogo from '@/assets/images/signsquare-logo.png'
+import router from '@/router';
+
+
+const moveIndexPage = ()=>{
+  router.push({path: '/'})
+}
 </script>

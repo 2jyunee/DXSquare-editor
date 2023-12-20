@@ -16,7 +16,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onUpdated } from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
 
 interface IProp {
@@ -115,6 +115,7 @@ const drop = (e) => {
 
 onMounted(() => {
   const annotationLayer = document.querySelector('#annotationLayer')
+  const templateLayer = document.querySelector('#templateLayer')
 
   annotationLayer?.addEventListener('drop', drop)
   annotationLayer?.addEventListener('dragover', allowDrop)
@@ -125,7 +126,15 @@ onMounted(() => {
   backgroundImage.value = templateImg.imgDataStr ?? ''
   htmlstring.value = templateImg.htmlStr
 })
+
+onUpdated(()=>{
+  const annotationLayer = document.querySelector('#annotationLayer')
+  // const containerHeight = document.querySelector('#doc-container')?.scrollHeight
+  annotationLayer.style.height = '2300px'
+})
+
 </script>
+
 
 <style scoped>
 .page {

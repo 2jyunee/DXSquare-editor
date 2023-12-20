@@ -14,17 +14,16 @@ const props = defineProps({
   isExec: Boolean
 })
 
+const emit = defineEmits(['exit'])
+
 const uploadComp = ref(null)
 const pdfCanvas = ref(null)
 const CMAP_URL = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/cmaps/'
 const editorStore = useEditorStore()
-watch(
-  () => props.isExec,
+watch(()=>props.isExec,
   (cur) => {
     if (cur === true) {
-      console.log(uploadComp.value)
       uploadComp.value.click()
-      // uploadComp.value.files[0]()
     }
   }
 )
@@ -49,12 +48,8 @@ const loadPdfFile = () => {
   const fileReader = new FileReader()
 
   fileReader.readAsDataURL(uploadComp.value.files[0])
-  // eslint-disable-next-line no-debugger
-  debugger
   fileReader.onload = () => {
     console.log(fileReader.result)
-    // eslint-disable-next-line no-debugger
-    debugger
     const pdfAsArray = convertDataURIToBinary(fileReader.result)
     let loadingTask = pdfjsLib.getDocument(pdfAsArray)
 
@@ -79,13 +74,13 @@ const loadPdfFile = () => {
         renderTask.promise.then(()=>{
 
           let tempImg = $canvas.toDataURL('image/png')
-          // eslint-disable-next-line no-debugger
-          debugger
+
           const editorObj = editorStore.getEditorObject()
-          let preContentStr = editorObj.getEditor().html.get()
+          // editor.execute('pageBreak')
+          let preContentStr = editorObj.getData()
           preContentStr += `<img src='${tempImg}'/>`
-          preContentStr += `<span class="fr-marker" style="line-height: 0; border:1px solid #000; ">페이지 구분선</span>`
-          editorObj.getEditor().html.set(preContentStr)
+          editorObj.setData(preContentStr)
+          emit('exit', false)
           
         });
 

@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useTemplateStore, useDocStore, type ItemplateImg } from '@/stores/document'
-import { useServiceStore } from '@/stores/service'
+import { useServiceStore, useEditorStore } from '@/stores/service'
 import saveModal from '@/components/modal/TemplateSaveModal.vue'
 import htmlToCanvas from 'html2canvas'
 import router from '@/router'
@@ -50,13 +50,13 @@ import router from '@/router'
 const serviceStore = useServiceStore()
 const templateStore = useTemplateStore()
 const documentStore = useDocStore()
+const editorStore = useEditorStore()
 
 const isShowSaveModal = ref(false)
 const toggleIconClass = ref('fa-regular fa-hand-pointer')
 const documentTitle = templateStore.getSelectTemplateName()
 
 const showSaveModal = () => {
-  debugger
   let isShowCreateBar = serviceStore.getCreateBarStatus()
   if (isShowCreateBar) {
     saveDocToHtml()
@@ -132,14 +132,15 @@ const showTemplateEditor = () => {
 }
 
 const goBackDocumentEditor = () => {
-  const editorHtmlElem = document.getElementsByClassName('fr-element')
+  // const editorHtmlElem = document.getElementsByClassName('fr-element')
+  const editorHtmlElem = document.getElementById('doc-container')
   let selectDocId = templateStore.getSelectTemplateId()
 
-  htmlToCanvas(editorHtmlElem[0]).then((canvas) => {
+  htmlToCanvas(editorHtmlElem).then((canvas) => {
     const t = canvas.toDataURL()
     const updateObj = {
       imgDataStr: t,
-      htmlStr: editorHtmlElem[0].innerHTML
+      htmlStr: editorHtmlElem.innerHTML
     }
 
     templateStore.updateTemplate(selectDocId, updateObj)
