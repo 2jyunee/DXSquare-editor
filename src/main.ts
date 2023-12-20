@@ -17,7 +17,6 @@ import 'froala-editor/css/froala_style.min.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import CKEditor from '@ckeditor/ckeditor5-vue'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 import VueFroala from 'vue-froala-wysiwyg'
