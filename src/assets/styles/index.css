@@ -10,11 +10,18 @@
   .bg-squarePurple-100 {
     background-color: #52424d;
   }
+  .bg-squareColorPurple-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(204, 38, 175, var(--tw-bg-opacity));
+  }
   .bg-squareLightPurple-100 {
     background-color: #b9a6b3;
   }
   .text-squareLightPurple-100 {
     color: #b9a6b3;
+  }
+  .text-squareColorPurple-100 {
+    color: #cc26af;
   }
 }
 

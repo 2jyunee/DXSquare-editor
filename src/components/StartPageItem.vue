@@ -20,7 +20,7 @@
       <div class="flex flex-wrap items-center">
         <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
           <div
-            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-emerald-500"
+            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-squareColorPurple-100"
           >
             <img
               alt="..."
@@ -36,7 +36,7 @@
               >
                 <polygon
                   points="-30,95 583,95 583,65"
-                  class="text-emerald-500 fill-current"
+                  class="text-squareColorPurple-100 fill-current"
                 ></polygon>
               </svg>
               <h4 class="text-xl font-bold text-white">Great for your awesome project</h4>
@@ -61,20 +61,20 @@
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">템플릿</h6>
                   <div class="mb-4 text-blueGray-500">
-                    템플릿을 직접 만들거나<br />외부 파일을 이용해보세요.<br />MS Word 파일을
-                    붙여넣거나<br />PDF 파일을 불러올 수 있어요.
+                    계약문서를 만들기 전<br />서식문서가 없나요?<br />걱정하지 말고<br />여기부터
+                    시작하세요.
                     <a
                       class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
                       @click="moveCreateTemplatePage"
                     >
-                      작성하기
+                      서식 문서 시작 하기
                     </a>
-                    <a
+                    <!-- <a
                       class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
                       @click="showCreateTemplateModal"
                     >
                       불러오기
-                    </a>
+                    </a> -->
                   </div>
                 </div>
               </div>
@@ -87,11 +87,12 @@
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">서식 테스트(DEV)</h6>
                   <div class="mb-4 text-blueGray-500">
+                    마지막 단계네요!<br />완성된 템플릿 문서로<br />계약을 진행하세요.
                     <a
                       class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
                       @click="showSelectDocumentModal"
                     >
-                      계약 서식 실행 테스트
+                      계약 시작하기
                     </a>
                   </div>
                 </div>
@@ -107,12 +108,12 @@
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">서식 만들기</h6>
                   <div class="mb-4 text-blueGray-500">
-                    템플릿을 이용해 <br />계약서 서식을 만들 수 있어요.
+                    준비된 서식문서가 있다면<br />여기로 끌어다 놓아주세요.
                     <a
                       @click="showSelectTemplateModal(true)"
                       class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
                     >
-                      입력 항목 배치하기
+                      템플릿 문서 시작하기
                     </a>
                   </div>
                 </div>

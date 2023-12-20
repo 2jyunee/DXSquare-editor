@@ -59,7 +59,7 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-6 mb-4 md:hidden">
+        <!-- <form class="mt-6 mb-4 md:hidden">
           <div class="mb-3 pt-0">
             <input
               type="text"
@@ -67,9 +67,13 @@
               class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
             />
           </div>
-        </form>
+        </form> -->
 
         <!-- Divider -->
+        <div class="ml-auto">
+          <button @click="uploadFile"><i class="fa-solid fa-file-circle-plus"></i></button>
+          <UploadItem class="hidden" :isExec="isExecFileUpload" />
+        </div>
         <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
         <h6
@@ -88,14 +92,21 @@
 import { onMounted, ref } from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
 import ThumbnailItem from './thumbnailItem.vue'
+import UploadItem from '@/components/upload/UploadItem.vue'
 
 const props = defineProps({
   isShowThumbnail: { type: Boolean, required: false, default: false }
 })
 
 const collapseShow = ref('hidden')
+const isExecFileUpload = ref(false)
+
 const toggleCollapseShow = (classes: string) => {
   collapseShow.value = classes
+}
+
+const uploadFile = () => {
+  isExecFileUpload.value = true
 }
 
 const imageStore = useTemplateStore()
