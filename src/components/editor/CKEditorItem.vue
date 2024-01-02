@@ -16,6 +16,8 @@
 
 <script setup lang="ts">
   import BalloonEditor from '@ckeditor/ckeditor5-build-balloon-block'
+  // import { ImportWord } from '@ckeditor/ckeditor5-import-word'
+  // import '@/assets/external/editor4.22.1/ckeditor.js'
   import { onMounted, ref } from 'vue'
   import { useEditorStore } from '@/stores/service'
 
@@ -23,10 +25,24 @@
     contents: { type: String, required: false, default: '' }
   })
 
+
+
+  // CKEDITOR.ClassicEditor.create()
   const editor = ref(BalloonEditor)
   const editorData = ref(props.contents)
   const editorConfig = ref({})
 
+  // editorConfig.value = {
+  //   plugins: [ImportWord],
+  //   toolbar: ['importWord'],
+  //   importWord: {
+  //     formatting: {
+  //               resets: 'none',
+  //               defaults: 'none',
+  //               styles: 'inline'
+  //           }
+  //   }
+  // }
   const editorStore = useEditorStore()
   const onEditorReady = (editor) => {
     editorStore.setEditorObject(editor)

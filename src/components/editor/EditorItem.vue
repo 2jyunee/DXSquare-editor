@@ -10,7 +10,7 @@
 import { onMounted, ref } from 'vue'
 import { type ItemplateImg } from '@/stores/document'
 import htmlToPdf from 'html2pdf.js'
-import { useEditorStore } from '@/stores/service';
+import { useEditorStore } from '@/stores/service'
 // import htmlToCanvas from 'html2canvas'
 
 const props = defineProps({

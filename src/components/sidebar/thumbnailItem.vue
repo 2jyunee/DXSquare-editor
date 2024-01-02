@@ -29,4 +29,3 @@ templateImages.push(curTemplate)
   height: 100%;
 }
 </style>
-@/stores/document

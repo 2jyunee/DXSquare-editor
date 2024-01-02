@@ -107,21 +107,22 @@ const saveDocToHtml = () => {
   documentStore.saveDocument(docObj)
 }
 
-const saveTemplate = (title) => {
+const saveTemplate = async (title) => {
   const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
   isShowSaveModal.value = false
-  htmlToCanvas(editorHtmlElem).then((canvas) => {
-    const t = canvas.toDataURL()
-    console.log(t)
-    const imageObj: ItemplateImg = {
-      id: `${title}_${new Date().getTime()}`,
-      imgDataStr: t,
-      fileName: title,
-      htmlStr: editorHtmlElem.innerHTML
-    }
+  
+  const canvas = await htmlToCanvas(editorHtmlElem)
+  
+  const t = canvas.toDataURL()
+  console.log(t)
+  const imageObj: ItemplateImg = {
+    id: `${title}_${new Date().getTime()}`,
+    imgDataStr: t,
+    fileName: title,
+    htmlStr: editorHtmlElem.innerHTML
+  }
 
-    templateStore.saveTemplate(imageObj)
-  })
+  templateStore.saveTemplate(imageObj)
 }
 
 const showTemplateEditor = () => {
