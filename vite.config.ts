@@ -9,9 +9,15 @@ export default defineConfig({
     vue(),
   ],
   optimizeDeps: {
+    include: ['ckeditor5-custom-build'],
     esbuildOptions: {
         target: "esnext",
     },
+  },
+  build:{
+    commonjsOptions: {
+      exclude: ['ckeditor5-custom-build']
+    }
   },
   resolve: {
     alias: {

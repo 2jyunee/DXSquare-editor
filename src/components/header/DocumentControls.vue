@@ -71,8 +71,10 @@ const hideSaveModal = () => {
 
 const saveDocToHtml = () => {
   const name = document.getElementById('doc-container')
+  // const name = document.querySelector('.ck-editor__main')
 
   let bodyStr = name.parentElement.innerHTML
+  // let bodyStr = name.innerHTML
   let htmlStr = '<html lang="en">'
   htmlStr += '<head>'
   htmlStr += '<meta charset="UTF-8">'
@@ -108,7 +110,9 @@ const saveDocToHtml = () => {
 }
 
 const saveTemplate = async (title) => {
-  const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
+  // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
+  const editorHtmlElem = document.querySelector('.ck-editor__main')
+  debugger;
   isShowSaveModal.value = false
   
   const canvas = await htmlToCanvas(editorHtmlElem)
