@@ -112,10 +112,17 @@ const saveDocToHtml = () => {
 const saveTemplate = async (title) => {
   // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
   const editorHtmlElem = document.querySelector('.ck-editor__main')
-  debugger;
   isShowSaveModal.value = false
   
-  const canvas = await htmlToCanvas(editorHtmlElem)
+  const canvas = await htmlToCanvas(editorHtmlElem.firstChild)
+  
+  let children:HTMLCollection = (editorHtmlElem.firstChild.children) as HTMLCollection;
+
+  for(let i=0; i<children?.length; i++){
+    if(children[i]?.getAttribute('class')?.indexOf('ck-placeholder')! > -1) {
+      editorHtmlElem?.firstChild?.removeChild(children[i])
+    }
+  }
   
   const t = canvas.toDataURL()
   console.log(t)
@@ -138,11 +145,20 @@ const showTemplateEditor = () => {
 
 const goBackDocumentEditor = () => {
   // const editorHtmlElem = document.getElementsByClassName('fr-element')
-  const editorHtmlElem = document.getElementById('doc-container')
+  const editorHtmlElem = document.querySelector('.ck-content')
+
+  let children:HTMLCollection = (editorHtmlElem?.children) as HTMLCollection;
+  for(let i=0; i<children?.length; i++){
+    if(children[i]?.getAttribute('class')?.indexOf('ck-placeholder')! > -1) {
+      editorHtmlElem?.removeChild(children[i])
+    }
+  }
+  
   let selectDocId = templateStore.getSelectTemplateId()
 
   htmlToCanvas(editorHtmlElem).then((canvas) => {
     const t = canvas.toDataURL()
+    
     const updateObj = {
       imgDataStr: t,
       htmlStr: editorHtmlElem.innerHTML

@@ -117,8 +117,6 @@ const loadPdfFile = () => {
       //       .then(() => {
       //         let $canvas = pdfCanvas.value
       //         let tempImg = $canvas.toDataURL('image/png')
-      //         // eslint-disable-next-line no-debugger
-      //         debugger
       //         const editorObj = editorStore.getEditorObject()
       //         let preContentStr = editorObj.getEditor().html.get()
       //         preContentStr += `<img src='${tempImg}'/>`
@@ -142,7 +140,6 @@ const loadPdfFile = () => {
 
       //         // // Set text-fragments
       //         // textLayer.setTextContentSource(textContent);
-      //         // debugger;
       //         // // Render text-fragments
       //         // textLayer.render();
       //       })
@@ -165,7 +162,6 @@ const loadPdfFile = () => {
 
       //     // console.log('dataImageBase64');
       //     // console.log(tempImg);
-      //     // debugger;
       //     // })
       //   })
       // }

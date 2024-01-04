@@ -46,7 +46,6 @@
   const editorData = ref(props.contents)
   const editorConfig = ref({})
   editorConfig.value = {
-    toolbar: {item:[]},
     licenseKey: 'OFN0L0xyakFWUStRcFljZG95S1BLdGJ6NmZhMzNzei9OdzhRK2FOVWVzaHFOenJlRDNuenNzSGlpUmpFLU1qQXlOREF5TURJPQ==',
     htmlSupport: {
             allow: [
@@ -124,7 +123,7 @@
                 reversed: true
             }
         },
-        placeholder: 'Type or paste your content here!',
+        placeholder: '',
         table: {
             contentToolbar: [
                 'tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties', 'toggleTableCaption'
@@ -140,7 +139,6 @@
 
   onMounted(() => {
     // editorStore.setEditorObject(editor.value)
-    debugger;
     // CKEDITOR.ClassicEditor.create( document.querySelector( '#doc-container' ), {
     //   toolbar: {
     //         items: [
@@ -357,9 +355,6 @@
 
     //   return editorObj;
     // })
-
-
-      debugger;
     //   Editor.builtinPlugins
     // ClassicEditor
     // .create( document.querySelector('#doc-container'), {

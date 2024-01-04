@@ -35,8 +35,6 @@ const config = ref({
   //       function (dropEvent) {
   //         // Focus at the current posisiton.
   //         editor?.markers.insertAtPoint(dropEvent.originalEvent)
-  //         // eslint-disable-next-line
-  //         debugger
   //         console.log(editor)
   //         var $marker = editor?.$el.find('.fr-marker')
   //         $marker.replaceWith(FroalaEditor.MARKERS)
