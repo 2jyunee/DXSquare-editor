@@ -130,7 +130,7 @@ const saveTemplate = async (title) => {
     id: `${title}_${new Date().getTime()}`,
     imgDataStr: t,
     fileName: title,
-    htmlStr: editorHtmlElem.innerHTML == '<br data-cke-filler="true">' ? '' : editorHtmlElem.innerHTML
+    htmlStr: editorHtmlElem?.innerHTML == '<br data-cke-filler="true">' ? '' : editorHtmlElem?.outerHTML
   }
 
   templateStore.saveTemplate(imageObj)
