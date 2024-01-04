@@ -19,6 +19,7 @@
 import { ref, onMounted, watch, onUpdated } from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
 import { useEditorStore } from '@/stores/service'
+import { onUnmounted } from 'vue';
 
 interface IProp {
   isUpdateTemplate?: string
@@ -29,7 +30,7 @@ const props = withDefaults(defineProps<IProp>(), {
   updateTemplateId: ''
 })
 
-const docStore = useTemplateStore()
+const templateStore = useTemplateStore()
 const editorStore = useEditorStore()
 const backgroundImage = ref('')
 const htmlstring = ref()
@@ -38,8 +39,8 @@ const showFlag = ref(props.isUpdateTemplate)
 
 watch(showFlag, (cur) => {
   if (cur === 'true') {
-    backgroundImage.value = docStore.getTemplate(props.updateTemplateId).imgDataStr
-    htmlstring.value = docStore.getTemplate(props.updateTemplateId).htmlStr
+    backgroundImage.value = templateStore.getTemplate(props.updateTemplateId).imgDataStr
+    htmlstring.value = templateStore.getTemplate(props.updateTemplateId).htmlStr
   }
 })
 
@@ -122,8 +123,8 @@ onMounted(() => {
   annotationLayer?.addEventListener('drop', drop)
   annotationLayer?.addEventListener('dragover', allowDrop)
 
-  const selectTemplateId = docStore.getSelectTemplateId()
-  let templateImg: ItemplateImg = docStore.getTemplate(selectTemplateId)
+  const selectTemplateId = templateStore.getSelectTemplateId()
+  let templateImg: ItemplateImg = templateStore.getTemplate(selectTemplateId)
 
   backgroundImage.value = templateImg.imgDataStr ?? ''
   htmlstring.value = templateImg.htmlStr
@@ -140,6 +141,10 @@ onUpdated(()=>{
   const annotationLayer = document.querySelector('#annotationLayer')
   // const containerHeight = document.querySelector('#doc-container')?.scrollHeight
   annotationLayer.style.height = '2300px'
+})
+
+onUnmounted(()=>{
+  templateStore.setSelectTemplateId('')
 })
 
 </script>

@@ -141,9 +141,7 @@
     editorStore.setEditorObject(editor)
     const command = editor.commands.get('pageBreak')
     command.on('execute', async () => {
-        //TODO 썸네일 붙이기
-        console.log(editor.getData())
-        // <div class="page-break" style="page-break-after:always;"><span style="display:none;">&nbsp;</span></div><p>&nbsp;</p>
+        serviceStore.initEditingTemplateImgArr()
         const curHtmlStr = document.getElementById('doc-container')?.innerHTML
         if(curHtmlStr != '<div class="page -break ck-widget" contenteditable="false"><span class="page - break__label">페이지 나누기</span><div class="ck ck - reset_all ck - widget__type - around"><div class="ck ck - widget__type - around__button ck - widget__type - around__button_before" title="블록 앞에 단락 삽입" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 8"><path d="M9.055.263v3.972h-6.77M1 4.216l2-2.038m-2 2 2 2.038"></path></svg></div><div class="ck ck-widget__type-around__button ck-widget__type-around__button_after" title="블록 뒤에 단락 삽입" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 8"><path d="M9.055.263v3.972h-6.77M1 4.216l2-2.038m-2 2 2 2.038"></path></svg></div><div class="ck ck-widget__type-around__fake-caret"></div></div></div><p><br data-cke-filler="true"></p>') {
             // 썸네일 생성
@@ -153,19 +151,30 @@
 
             for (let i = 0; i < contentDomElem!.length; i++) {
                 if (contentDomElem[i].className.indexOf('page-break') > -1) {
-                    // TODO 썸네일 만들기
                     document.body.appendChild(container);
 
                     let canvas = await htmlToCanvas(container)
 
                     let image = canvas.toDataURL()
-                    // console.log(image)
                     serviceStore.appendEditingTemplateImgArr(image)
                     document.body.removeChild(container)
                     container.remove()
+                    container = document.createElement('div')
                 } else {
                     container.appendChild(contentDomElem[i])
                 }
+            }
+
+            if (container.innerHTML) {
+                debugger
+                document.body.appendChild(container)
+                let canvas = await htmlToCanvas(container)
+
+                let image = canvas.toDataURL()
+                serviceStore.appendEditingTemplateImgArr(image)
+                // document.body.removeChild(container)
+                container.remove()
+
             }
         }
 

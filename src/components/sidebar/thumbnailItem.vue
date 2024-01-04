@@ -8,7 +8,7 @@
   </ul>
 </template>
 <script setup lang="ts">
-import {ref, watch, computed, onMounted} from 'vue'
+import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
 import {useServiceStore} from '@/stores/service'
 import htmlToCanvas from 'html2canvas'
@@ -26,6 +26,10 @@ const templateImages = ref(new Array<string>())
 if(!props.templateId) {
   templateImages.value = serviceStore.getEditingTemplateImgArr()
 }
+
+watch(()=> serviceStore.getEditingTemplateImgArr(), (curValue)=>{
+  templateImages.value = curValue
+})
 
 
 onMounted(async ()=>{
@@ -67,6 +71,10 @@ onMounted(async ()=>{
   }
   
 
+})
+
+onUnmounted(()=>{
+  serviceStore.initEditingTemplateImgArr()
 })
 </script>
 
