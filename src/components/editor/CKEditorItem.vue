@@ -42,7 +42,7 @@
 
   //page-break ck-widget
   
-  const editor = ref(ClassicEditor)
+  const editor = ref(BalloonEditor)
   const editorData = ref(props.contents)
   const editorConfig = ref({})
   editorConfig.value = {
