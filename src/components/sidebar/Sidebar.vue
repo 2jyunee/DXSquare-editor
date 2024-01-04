@@ -79,7 +79,7 @@
           {{ `1 / ${templateImages.length} 페이지` }}
         </h6>
         <!-- Navigation -->
-        <ThumbnailItem v-if="imageStore.getSelectTemplateId()"></ThumbnailItem>
+        <ThumbnailItem :templateId="imageStore.getSelectTemplateId()"></ThumbnailItem>
       </div>
     </div>
   </nav>

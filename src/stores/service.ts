@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 export const useServiceStore = defineStore('service', () => {
   const isShowModal = ref(false)
   const isShowCreateBar = ref(false)
+  const editingTemplateImgArr = ref([])
 
   function saveModalStatus(val: boolean) {
     isShowModal.value = val
@@ -17,7 +18,29 @@ export const useServiceStore = defineStore('service', () => {
     return isShowCreateBar.value
   }
 
-  return { isShowModal, isShowCreateBar, saveModalStatus, setCreateBarStatus, getCreateBarStatus }
+  function appendEditingTemplateImgArr(data) {
+    editingTemplateImgArr.value.push(data)
+  }
+
+  function getEditingTemplateImgArr() {
+    return editingTemplateImgArr.value
+  }
+
+  function initEditingTemplateImgArr() {
+    editingTemplateImgArr.value = []
+  }
+
+  return {
+    isShowModal,
+    isShowCreateBar,
+    editingTemplateImgArr,
+    saveModalStatus,
+    setCreateBarStatus,
+    getCreateBarStatus,
+    appendEditingTemplateImgArr,
+    getEditingTemplateImgArr,
+    initEditingTemplateImgArr
+  }
 })
 
 export const useEditorStore = defineStore('editor', () => {
@@ -40,5 +63,12 @@ export const useEditorStore = defineStore('editor', () => {
     return tempAnnotationObj.value
   }
 
-  return { tempAnnotationObj, setEditorObject, getEditorObject, setTempAnnotationObj, getTempAnnotationObj }
+  return {
+    editorObject,
+    tempAnnotationObj,
+    setEditorObject,
+    getEditorObject,
+    setTempAnnotationObj,
+    getTempAnnotationObj
+  }
 })
