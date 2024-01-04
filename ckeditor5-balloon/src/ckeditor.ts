@@ -6,30 +6,74 @@
 import { BalloonEditor } from '@ckeditor/ckeditor5-editor-balloon';
 
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
-import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import {
+	Bold,
+	Italic,
+	Strikethrough,
+	Subscript,
+	Superscript,
+	Underline
+} from '@ckeditor/ckeditor5-basic-styles';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import type { EditorConfig } from '@ckeditor/ckeditor5-core';
+import { TableOfContents } from '@ckeditor/ckeditor5-document-outline';
+import { EasyImage } from '@ckeditor/ckeditor5-easy-image';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { ExportPdf } from '@ckeditor/ckeditor5-export-pdf';
 import { ExportWord } from '@ckeditor/ckeditor5-export-word';
+import { FontBackgroundColor } from '@ckeditor/ckeditor5-font';
 import { Heading } from '@ckeditor/ckeditor5-heading';
+import { Highlight } from '@ckeditor/ckeditor5-highlight';
+import { HorizontalLine } from '@ckeditor/ckeditor5-horizontal-line';
+import { HtmlEmbed } from '@ckeditor/ckeditor5-html-embed';
+import {
+	DataFilter,
+	DataSchema,
+	GeneralHtmlSupport,
+	HtmlComment
+} from '@ckeditor/ckeditor5-html-support';
 import {
 	Image,
 	ImageCaption,
+	ImageInsert,
+	ImageResize,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload
 } from '@ckeditor/ckeditor5-image';
 import { ImportWord } from '@ckeditor/ckeditor5-import-word';
-import { Indent } from '@ckeditor/ckeditor5-indent';
+import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
+import { TextPartLanguage } from '@ckeditor/ckeditor5-language';
 import { Link } from '@ckeditor/ckeditor5-link';
-import { DocumentList } from '@ckeditor/ckeditor5-list';
+import { DocumentList, DocumentListProperties, TodoDocumentList } from '@ckeditor/ckeditor5-list';
 import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
 import { PageBreak } from '@ckeditor/ckeditor5-page-break';
 import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
 import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
-import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
+import { PasteFromOfficeEnhanced } from '@ckeditor/ckeditor5-paste-from-office-enhanced';
+import { StandardEditingMode } from '@ckeditor/ckeditor5-restricted-editing';
+import { SelectAll } from '@ckeditor/ckeditor5-select-all';
+import { ShowBlocks } from '@ckeditor/ckeditor5-show-blocks';
+import {
+	SpecialCharacters,
+	SpecialCharactersArrows,
+	SpecialCharactersCurrency,
+	SpecialCharactersEssentials,
+	SpecialCharactersLatin,
+	SpecialCharactersMathematical,
+	SpecialCharactersText
+} from '@ckeditor/ckeditor5-special-characters';
+import { Style } from '@ckeditor/ckeditor5-style';
+import {
+	Table,
+	TableCaption,
+	TableCellProperties,
+	TableColumnResize,
+	TableProperties,
+	TableToolbar
+} from '@ckeditor/ckeditor5-table';
+import { Template } from '@ckeditor/ckeditor5-template';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
 
@@ -42,27 +86,64 @@ class Editor extends BalloonEditor {
 		BlockQuote,
 		Bold,
 		CloudServices,
+		DataFilter,
+		DataSchema,
 		DocumentList,
+		DocumentListProperties,
+		EasyImage,
 		Essentials,
 		ExportPdf,
 		ExportWord,
+		FontBackgroundColor,
+		GeneralHtmlSupport,
 		Heading,
+		Highlight,
+		HorizontalLine,
+		HtmlComment,
+		HtmlEmbed,
 		Image,
 		ImageCaption,
+		ImageInsert,
+		ImageResize,
 		ImageStyle,
 		ImageToolbar,
 		ImageUpload,
 		ImportWord,
 		Indent,
+		IndentBlock,
 		Italic,
 		Link,
 		MediaEmbed,
 		PageBreak,
 		Paragraph,
 		PasteFromOffice,
+		PasteFromOfficeEnhanced,
+		SelectAll,
+		ShowBlocks,
+		SpecialCharacters,
+		SpecialCharactersArrows,
+		SpecialCharactersCurrency,
+		SpecialCharactersEssentials,
+		SpecialCharactersLatin,
+		SpecialCharactersMathematical,
+		SpecialCharactersText,
+		StandardEditingMode,
+		Strikethrough,
+		Style,
+		Subscript,
+		Superscript,
 		Table,
+		TableCaption,
+		TableCellProperties,
+		TableColumnResize,
+		TableOfContents,
+		TableProperties,
 		TableToolbar,
+		Template,
+		TextPartLanguage,
 		TextTransformation,
+		TodoDocumentList,
+		Underline,
 		Undo
 	];
 
@@ -70,8 +151,10 @@ class Editor extends BalloonEditor {
 		toolbar: {
 			items: [
 				'heading',
+				'style',
 				'|',
 				'bold',
+				'underline',
 				'italic',
 				'link',
 				'bulletedList',
@@ -89,7 +172,10 @@ class Editor extends BalloonEditor {
 				'exportWord',
 				'exportPdf',
 				'importWord',
-				'pageBreak'
+				'pageBreak',
+				'htmlEmbed',
+				'selectAll',
+				'highlight'
 			]
 		},
 		language: 'ko',
@@ -106,7 +192,9 @@ class Editor extends BalloonEditor {
 			contentToolbar: [
 				'tableColumn',
 				'tableRow',
-				'mergeTableCells'
+				'mergeTableCells',
+				'tableCellProperties',
+				'tableProperties'
 			]
 		}
 	};
