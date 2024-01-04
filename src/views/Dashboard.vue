@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, onUpdated } from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
+import { useEditorStore } from '@/stores/service'
 
 interface IProp {
   isUpdateTemplate?: string
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<IProp>(), {
 })
 
 const docStore = useTemplateStore()
+const editorStore = useEditorStore()
 const backgroundImage = ref('')
 const htmlstring = ref()
 
@@ -125,6 +127,14 @@ onMounted(() => {
 
   backgroundImage.value = templateImg.imgDataStr ?? ''
   htmlstring.value = templateImg.htmlStr
+
+  //here
+  const annotationElmStr = editorStore.getTempAnnotationObj()
+
+  if(annotationElmStr) {
+    annotationLayer?.insertAdjacentHTML( 'beforeend', annotationElmStr );
+  }
+  
 })
 
 onUpdated(()=>{

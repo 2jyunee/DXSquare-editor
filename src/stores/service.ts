@@ -22,6 +22,7 @@ export const useServiceStore = defineStore('service', () => {
 
 export const useEditorStore = defineStore('editor', () => {
   const editorObject = ref('')
+  const tempAnnotationObj = ref('')
 
   function setEditorObject(obj) {
     editorObject.value = obj
@@ -31,5 +32,13 @@ export const useEditorStore = defineStore('editor', () => {
     return editorObject.value
   }
 
-  return { setEditorObject, getEditorObject }
+  function setTempAnnotationObj(data) {
+    tempAnnotationObj.value = data
+  }
+
+  function getTempAnnotationObj() {
+    return tempAnnotationObj.value
+  }
+
+  return { tempAnnotationObj, setEditorObject, getEditorObject, setTempAnnotationObj, getTempAnnotationObj }
 })

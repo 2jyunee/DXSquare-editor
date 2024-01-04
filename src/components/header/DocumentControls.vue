@@ -139,6 +139,10 @@ const saveTemplate = async (title) => {
 const showTemplateEditor = () => {
   let selectDocId = templateStore.getSelectTemplateId()
   toggleIconClass.value = 'fa-regular fa-pen-to-square'
+  
+  const el = document.getElementById('annotationLayer')!
+  editorStore.setTempAnnotationObj(el.innerHTML)
+
   // TODO useRoute를 통해서 route 객체를 얻어온 후, route.path를 watch > 경로 변경 감지. 파라미터 전달 X
   router.push({ name: 'templateEditor', params: { docId: selectDocId } })
 }
