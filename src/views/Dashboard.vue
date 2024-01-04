@@ -128,7 +128,6 @@ onMounted(() => {
   backgroundImage.value = templateImg.imgDataStr ?? ''
   htmlstring.value = templateImg.htmlStr
 
-  //here
   const annotationElmStr = editorStore.getTempAnnotationObj()
 
   if(annotationElmStr) {

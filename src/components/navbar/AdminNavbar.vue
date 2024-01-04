@@ -39,6 +39,6 @@ import router from '@/router';
 
 
 const moveIndexPage = ()=>{
-  router.push({path: '/'})
+  router.replace({path: '/'})
 }
 </script>

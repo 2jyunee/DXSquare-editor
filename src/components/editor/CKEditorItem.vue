@@ -40,8 +40,8 @@
   })
 
 
-
-  // CKEDITOR.ClassicEditor.create()
+  //page-break ck-widget
+  
   const editor = ref(ClassicEditor)
   const editorData = ref(props.contents)
   const editorConfig = ref({})

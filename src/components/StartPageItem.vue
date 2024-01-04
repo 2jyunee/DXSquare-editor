@@ -282,7 +282,7 @@ const showSelectDocumentModal = (val) => {
 }
 const movePreviewPage = (item: ItemplateImg) => {
   // window.open('/preview', '_blank', 'width=1280,height=720')
-  router.push({ name: 'preview', state: { contentHtml: item.htmlStr } })
+  router.replace({ name: 'preview', state: { contentHtml: item.htmlStr } })
 }
 </script>
 <style scoped></style>
