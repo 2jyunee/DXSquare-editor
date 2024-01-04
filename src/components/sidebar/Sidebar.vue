@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="w-52 md:left-0 md:block md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative z-10 py-4 px-6"
+    class="bg-white border"
   >
     <div
-      class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
+      class="" style="width: 162px"
     >
       <!-- Toggler -->
       <button
@@ -30,10 +30,7 @@
         </li>
       </ul>
       <!-- Collapse -->
-      <div
-        class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded"
-        v-bind:class="collapseShow"
-      >
+      <div>
         <!-- Collapse header -->
         <div
           class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"

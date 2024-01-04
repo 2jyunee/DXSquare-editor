@@ -6,7 +6,7 @@
         <div class="w-full">
           <div id="doc-container" class="layer">
             <!-- <img :src="backgroundImage" /> -->
-            <div id="templateLayer" v-html="htmlstring" class="template-layer"></div>
+            <div id="templateLayer" v-html="htmlstring" class="template-layer" style="width: 100%;"></div>
             <canvas class="canvas-div"></canvas>
             <div id="annotationLayer" class="annotation-layer"></div>
           </div>
