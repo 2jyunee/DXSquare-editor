@@ -5,7 +5,7 @@
   "compilerOptions": {
     "composite": true,
     "target": "es2017",
-    "lib": ["es5", "es2015.promise", "dom"],
+    "lib": ["es2015", "es2015.promise", "dom"],
     "removeComments": true,
     "noImplicitAny": false,
     "allowJs": true,

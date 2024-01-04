@@ -2,12 +2,13 @@
   <ul class="md:flex-col md:min-w-full flex flex-col list-none">
     <li class="items-center" v-for="(item, idx) of templateImages" :key="idx">
       <div class="border p-2 thumbnail">
-        <img class="thumbnail-img" :src="item.imgDataStr" />
+        <img class="thumbnail-img" :src="item" />
       </div>
     </li>
   </ul>
 </template>
 <script setup lang="ts">
+import {ref, watch, computed} from 'vue'
 import { useTemplateStore, type ItemplateImg } from '@/stores/document'
 import htmlToCanvas from 'html2canvas'
 
@@ -18,6 +19,15 @@ import htmlToCanvas from 'html2canvas'
 const docStore = useTemplateStore()
 const selectTemplateId = docStore.getSelectTemplateId()
 const curTemplate = docStore.getTemplate(selectTemplateId)
+// const templateImages: ItemplateImg[] = new Array<ItemplateImg>()
+const templateImages = ref(new Array<string>())
+// const thumbnailImages = ref(templateImages)
+
+watch(templateImages, (newValue, oldValue) => {
+  console.log('here')
+  console.log(newValue)
+  templateImages.value = newValue
+})
 
 
 let domElems = new DOMParser().parseFromString(curTemplate.htmlStr, "text/html")
@@ -25,23 +35,44 @@ let domElems = new DOMParser().parseFromString(curTemplate.htmlStr, "text/html")
 
 debugger
 //here
-let contentDomElem = domElems.querySelector('.ck-content')?.children!
+let contentDomElem = Array.from(domElems.querySelector('.ck-content')?.children!)
+let container = document.createElement('div')
 
 for(let i=0; i<contentDomElem!.length; i++) {
   if(contentDomElem[i].className.indexOf('page-break') > -1) {
     // TODO 썸네일 만들기
-    let elemArr = Array.from(contentDomElem)
-    let canvas = await htmlToCanvas(elemArr.slice(0, i))
-    debugger
+    document.body.appendChild(container);
+
+    let canvas = await htmlToCanvas(container)
+
+    let image = canvas.toDataURL()
+    // console.log(image)
+    templateImages.value.push(image)
+    document.body.removeChild(container)
+    container.remove()
+    container = document.createElement('div')
 
   } else {
-
+    container.appendChild(contentDomElem[i])
   }
 }
 
+if(container.innerHTML) {
+  document.body.appendChild(container)
+  let canvas = await htmlToCanvas(container)
 
-const templateImages: ItemplateImg[] = new Array<ItemplateImg>()
-templateImages.push(curTemplate)
+  let image = canvas.toDataURL()
+  console.log(image)
+  debugger
+  templateImages.value.push(image)
+  // document.body.removeChild(container)
+  container.remove()
+
+}
+
+
+// const templateImages: ItemplateImg[] = new Array<ItemplateImg>()
+// templateImages.push(curTemplate)
 </script>
 
 <style scoped>
