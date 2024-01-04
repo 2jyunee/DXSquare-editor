@@ -111,7 +111,7 @@ const saveDocToHtml = () => {
 
 const saveTemplate = async (title) => {
   // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
-  const editorHtmlElem = document.querySelector('.ck-editor__main')
+  const editorHtmlElem = document.querySelector('.ck-editor__main > div > p')
   debugger;
   isShowSaveModal.value = false
   
@@ -123,7 +123,7 @@ const saveTemplate = async (title) => {
     id: `${title}_${new Date().getTime()}`,
     imgDataStr: t,
     fileName: title,
-    htmlStr: editorHtmlElem.innerHTML
+    htmlStr: editorHtmlElem.innerHTML == '<br data-cke-filler="true">' ? '' : editorHtmlElem.innerHTML
   }
 
   templateStore.saveTemplate(imageObj)
