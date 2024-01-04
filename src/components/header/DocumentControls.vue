@@ -111,7 +111,7 @@ const saveDocToHtml = () => {
 
 const saveTemplate = async (title) => {
   // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
-  const editorHtmlElem = document.querySelector('.ck-editor__main')
+  const editorHtmlElem = document.querySelector('#doc-container')
   isShowSaveModal.value = false
   
   const canvas = await htmlToCanvas(editorHtmlElem.firstChild)
