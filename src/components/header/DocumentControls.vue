@@ -2,7 +2,7 @@
   <div class="bg-white pt-2 pb-2 pl-5 pr-5 border"  style="font-size: 35px;">
     <div class="flex flex-nowrap justify-between md:px-10 px-4">
       <div class="title space-x-3">
-        <span>{{ documentTitle || '무제' }}</span>
+        <input type="text" v-model="documentTitle" style="border:none; font-size: 35px; padding:0;"/>
       </div>
       <div class="doc-control-1 space-x-5">
         <select class="pt-0.5 pr-10 pb-0.5 pl-2.5" name="zoom-value" v-show="false">
@@ -56,7 +56,7 @@ const route = useRoute()
 
 const isShowSaveModal = ref(false)
 const toggleIconClass = ref('fa-regular fa-pen-to-square')
-const documentTitle = ref(templateStore.getSelectTemplateName())
+const documentTitle = ref(templateStore.getSelectTemplateName() || '무제')
 
 watch(()=>route.path, (cur, pre)=>{
   
@@ -157,20 +157,16 @@ const toggleEditor = () => {
 
   let selectDocId = templateStore.getSelectTemplateId()
   
-  debugger
   if(!selectDocId) {
     // 템플릿 편집 모드 -> 배치 모드
-    if(!documentTitle.value) {
-      toggleIconClass.value = 'fa-regular fa-hand-pointer'
-      isShowSaveModal.value = true
-    } else {
-      saveTemplate(documentTitle.value)
-    }
+    toggleIconClass.value = 'fa-regular fa-hand-pointer'
+    saveTemplate(documentTitle.value)
     
     
   } else {
     // 배치 모드 -> 템플릿 편집 모드
-    // original logic
+    toggleIconClass.value = 'fa-regular fa-pen-to-square'
+
     let selectDocId = templateStore.getSelectTemplateId()
     const el = document.getElementById('annotationLayer')!
     editorStore.setTempAnnotationObj(el.innerHTML)
