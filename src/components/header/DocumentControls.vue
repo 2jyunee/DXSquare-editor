@@ -18,11 +18,11 @@
         <button><i class="fa-regular fa-images"></i></button>
         <button><i class="fa-solid fa-rotate-left"></i></button>
         <button><i class="fa-solid fa-rotate-right"></i></button>
-        <button @click="showTemplateEditor"><i :class="toggleIconClass"></i></button>
+        <button @click="toggleEditor"><i :class="toggleIconClass"></i></button>
       </div>
       <div class="doc-control-2 space-x-5">
         <button @click="showSaveModal"><i class="fa-regular fa-floppy-disk"></i></button>
-        <button @click="goBackDocumentEditor">
+        <button @click="exitEditor">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
       </div>
@@ -40,21 +40,31 @@
   ></saveModal>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
 import { useTemplateStore, useDocStore, type ItemplateImg } from '@/stores/document'
 import { useServiceStore, useEditorStore } from '@/stores/service'
 import saveModal from '@/components/modal/TemplateSaveModal.vue'
 import htmlToCanvas from 'html2canvas'
 import router from '@/router'
+import { useRoute } from 'vue-router'
 
 const serviceStore = useServiceStore()
 const templateStore = useTemplateStore()
 const documentStore = useDocStore()
 const editorStore = useEditorStore()
+const route = useRoute()
 
 const isShowSaveModal = ref(false)
-const toggleIconClass = ref('fa-regular fa-hand-pointer')
-const documentTitle = templateStore.getSelectTemplateName()
+const toggleIconClass = ref('fa-regular fa-pen-to-square')
+const documentTitle = ref(templateStore.getSelectTemplateName())
+
+watch(()=>route.path, (cur, pre)=>{
+  
+  if(cur.indexOf('/doc/editor') > -1 || cur.indexOf('/doc/dashboard') > -1) {
+    console.log('route move')
+    documentTitle.value = templateStore.getSelectTemplateName()
+  }
+})
 
 const showSaveModal = () => {
   let isShowCreateBar = serviceStore.getCreateBarStatus()
@@ -70,10 +80,10 @@ const hideSaveModal = () => {
 }
 
 const saveDocToHtml = () => {
-  const name = document.getElementById('doc-container')
+  const contentsElem = document.getElementById('doc-container')
   // const name = document.querySelector('.ck-editor__main')
 
-  let bodyStr = name.parentElement.innerHTML
+  let bodyStr = contentsElem.parentElement.innerHTML
   // let bodyStr = name.innerHTML
   let htmlStr = '<html lang="en">'
   htmlStr += '<head>'
@@ -90,7 +100,7 @@ const saveDocToHtml = () => {
   // const parser = new DOMParser()
   // const doc = parser.parseFromString(htmlStr, 'text/html')
 
-  let fileName = `${documentTitle}.html`
+  let fileName = `${documentTitle.value}.html`
 
   const blob = new Blob([htmlStr], { type: 'text/html' })
   const path = window.URL.createObjectURL(blob)
@@ -134,47 +144,69 @@ const saveTemplate = async (title) => {
   }
 
   templateStore.saveTemplate(imageObj)
+
+  templateStore.setSelectTemplateId(imageObj.id)
+  // documentTitle = templateStore.getSelectTemplateName()
+
+  goBackDocumentEditor()
 }
 
-const showTemplateEditor = () => {
+const toggleEditor = () => {
+  serviceStore.setCreateBarStatus(false)
+
   let selectDocId = templateStore.getSelectTemplateId()
-  toggleIconClass.value = 'fa-regular fa-pen-to-square'
   
-  const el = document.getElementById('annotationLayer')!
-  editorStore.setTempAnnotationObj(el.innerHTML)
-
-  // TODO useRoute를 통해서 route 객체를 얻어온 후, route.path를 watch > 경로 변경 감지. 파라미터 전달 X
-  router.replace({ name: 'templateEditor', params: { docId: selectDocId } })
-}
-
-const goBackDocumentEditor = () => {
-  // const editorHtmlElem = document.getElementsByClassName('fr-element')
-  const editorHtmlElem = document.querySelector('.ck-content')
-
-  let children:HTMLCollection = (editorHtmlElem?.children) as HTMLCollection;
-  for(let i=0; i<children?.length; i++){
-    if(children[i]?.getAttribute('class')?.indexOf('ck-placeholder')! > -1) {
-      editorHtmlElem?.removeChild(children[i])
+  debugger
+  if(!selectDocId) {
+    // 템플릿 편집 모드 -> 배치 모드
+    if(!documentTitle.value) {
+      toggleIconClass.value = 'fa-regular fa-hand-pointer'
+      isShowSaveModal.value = true
+    } else {
+      //here
+      saveTemplate(documentTitle.value)
     }
-  }
-  
-  let selectDocId = templateStore.getSelectTemplateId()
-
-  htmlToCanvas(editorHtmlElem).then((canvas) => {
-    const t = canvas.toDataURL()
     
-    const updateObj = {
-      imgDataStr: t,
-      htmlStr: editorHtmlElem.innerHTML
-    }
+    
+  } else {
+    // 배치 모드 -> 템플릿 편집 모드
+    // original logic
+    let selectDocId = templateStore.getSelectTemplateId()
+    const el = document.getElementById('annotationLayer')!
+    editorStore.setTempAnnotationObj(el.innerHTML)
 
-    templateStore.updateTemplate(selectDocId, updateObj)
-    toggleIconClass.value = 'fa-regular fa-hand-pointer'
-    router.replace({
-      name: 'documentEditor',
-      params: { isUpdateTemplate: 'true', updateTemplateId: selectDocId }
-    })
+    // TODO useRoute를 통해서 route 객체를 얻어온 후, route.path를 watch > 경로 변경 감지. 파라미터 전달 X
+    router.replace({ name: 'templateEditor', params: { docId: selectDocId } })
+  }
+}
+
+const goBackDocumentEditor = async () => {
+  // const editorHtmlElem = document.getElementsByClassName('fr-element')
+  const editorHtmlElem = document.querySelector('#doc-container')
+  
+  let selectDocId = templateStore.getSelectTemplateId()
+
+  const canvas = await htmlToCanvas(editorHtmlElem)
+  const pageAllImage = canvas.toDataURL()
+  const updateObj = {
+      imgDataStr: pageAllImage,
+      htmlStr: editorHtmlElem?.outerHTML
+  }
+
+  templateStore.updateTemplate(selectDocId, updateObj)
+  toggleIconClass.value = 'fa-regular fa-hand-pointer'
+  serviceStore.setCreateBarStatus(true)
+
+  router.replace({
+    name: 'documentEditor',
+    params: { isUpdateTemplate: 'true', updateTemplateId: selectDocId }
   })
+
+}
+
+
+const exitEditor = ()=>{
+  router.push({path: '/'})
 }
 </script>
 

@@ -59,21 +59,15 @@
                   >
                     <i class="fas fa-newspaper"></i>
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">템플릿</h6>
+                  <h6 class="text-xl mb-1 font-semibold">서식 만들기</h6>
                   <div class="mb-4 text-blueGray-500">
                     계약문서를 만들기 전<br />서식문서가 없나요?<br />걱정하지 말고<br />여기부터
                     시작하세요.
                     <a
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
+                    class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
                       @click="moveCreateTemplatePage"
                     >
                       서식 문서 시작 하기
-                    </a>
-                    <a
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
-                      @click="showCreateTemplateModal"
-                    >
-                      불러오기
                     </a>
                   </div>
                 </div>
@@ -106,13 +100,12 @@
                   >
                     <i class="fas fa-file-alt"></i>
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">서식 만들기</h6>
+                  <h6 class="text-xl mb-1 font-semibold">템플릿 테스트(DEV)</h6>
                   <div class="mb-4 text-blueGray-500">
-                    준비된 서식문서가 있다면<br />여기로 끌어다 놓아주세요.
+                    준비된 서식문서를<br />불러옵니다.
                     <a
                       @click="showSelectTemplateModal(true)"
-                      class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
-                    >
+                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block">
                       템플릿 문서 시작하기
                     </a>
                   </div>

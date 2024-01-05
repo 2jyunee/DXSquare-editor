@@ -1,6 +1,6 @@
 <template>
-  <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-    <li class="items-center" v-for="(item, idx) in templateImages" :key="idx">
+  <ul class="md:flex-col md:min-w-full flex flex-col list-none thumbnail-container">
+    <li class="items-center thumbnail-img-container" v-for="(item, idx) in templateImages" :key="idx">
       <div class="border p-2 thumbnail">
         <img class="thumbnail-img" :src="item" />
       </div>
@@ -38,6 +38,7 @@ onMounted(async ()=>{
 
     let contentDomElem = Array.from(domElems.querySelector('.ck-content')?.children!)
     let container = document.createElement('div')
+    container.setAttribute('style', 'display:hidden')
 
     for (let i = 0; i < contentDomElem!.length; i++) {
       if (contentDomElem[i].className.indexOf('page-break') > -1) {
@@ -52,6 +53,7 @@ onMounted(async ()=>{
         document.body.removeChild(container)
         container.remove()
         container = document.createElement('div')
+        container.setAttribute('style', 'display:hidden')
 
       } else {
         container.appendChild(contentDomElem[i])
@@ -81,5 +83,12 @@ onUnmounted(()=>{
 <style scoped>
 .thumbnail-img {
   height: 100%;
+}
+.thumbnail-container {
+  overflow-y: auto;
+  max-height: 690px;
+}
+.thumbnail-img-container {
+  padding:20px;
 }
 </style>
