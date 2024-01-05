@@ -1,6 +1,6 @@
 <template>
-  <div id="preview-container" class="container">
-    <div v-html="docHtml"></div>
+  <div id="preview-container" class="container" v-html="docHtml">
+
   </div>
   <SignatureModal
     v-if="isShowSignModal"
@@ -65,4 +65,6 @@ onMounted(() => {
   })
 })
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

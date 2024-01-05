@@ -45,6 +45,7 @@
 
   .template-layer {
     position: absolute;
+    width: 950px !important;
   }
   .annotation-layer {
     z-index: 9;
