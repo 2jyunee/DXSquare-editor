@@ -20,8 +20,8 @@
         <button><i class="fa-solid fa-rotate-right"></i></button>
       </div>
       <div class="doc-control-2 space-x-5">
-        <button @click="toggleEditor" v-if="pathname!='/doc/editor'"><i :class="toggleIconClass"></i></button>
-        <button @click="showSaveModal" v-else><i class="fa-regular fa-floppy-disk"></i></button>
+        <button @click="toggleEditor"><i :class="toggleIconClass"></i></button>
+        <button @click="showSaveModal"><i class="fa-regular fa-floppy-disk"></i></button>
         <button @click="exitEditor">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
