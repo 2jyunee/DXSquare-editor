@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CKEditorItem :contents="htmlContents"></CKEditorItem>
+    <CKEditorItem :contents="htmlContents" :paddingFlag="props.paddingFlag"></CKEditorItem>
   </div>
 </template>
 
@@ -14,13 +14,15 @@ import { useTemplateStore } from '@/stores/document'
 // import htmlToCanvas from 'html2canvas'
 
 interface ICreateForm {
-  docId?: string
+  docId?: string,
+  paddingFlag?: boolean
 }
 const props = withDefaults(defineProps<ICreateForm>(), {
-  docId: ''
+  docId: '',
 })
 
 const docStore = useTemplateStore()
+const isPaddingApply = ref(false)
 const htmlContents = docStore.getTemplate(props.docId)?.htmlStr
 
 </script>

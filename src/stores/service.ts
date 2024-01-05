@@ -5,6 +5,7 @@ export const useServiceStore = defineStore('service', () => {
   const isShowModal = ref(false)
   const isShowCreateBar = ref(false)
   const editingTemplateImgArr = ref([])
+  const isPaddingApply = ref(true)
 
   function saveModalStatus(val: boolean) {
     isShowModal.value = val
@@ -30,16 +31,26 @@ export const useServiceStore = defineStore('service', () => {
     editingTemplateImgArr.value = []
   }
 
+  function offPaddingStatus() {
+    isPaddingApply.value = false
+  }
+  function onPaddingStatus() {
+    isPaddingApply.value = true
+  }
+
   return {
     isShowModal,
     isShowCreateBar,
     editingTemplateImgArr,
+    isPaddingApply,
     saveModalStatus,
     setCreateBarStatus,
     getCreateBarStatus,
     appendEditingTemplateImgArr,
     getEditingTemplateImgArr,
-    initEditingTemplateImgArr
+    initEditingTemplateImgArr,
+    offPaddingStatus,
+    onPaddingStatus
   }
 })
 

@@ -123,6 +123,7 @@ const saveTemplate = async (title) => {
   // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
   const editorHtmlElem = document.querySelector('#doc-container')
   isShowSaveModal.value = false
+  debugger
   
   const canvas = await htmlToCanvas(editorHtmlElem.firstChild)
   
@@ -163,7 +164,6 @@ const toggleEditor = () => {
       toggleIconClass.value = 'fa-regular fa-hand-pointer'
       isShowSaveModal.value = true
     } else {
-      //here
       saveTemplate(documentTitle.value)
     }
     
@@ -174,9 +174,10 @@ const toggleEditor = () => {
     let selectDocId = templateStore.getSelectTemplateId()
     const el = document.getElementById('annotationLayer')!
     editorStore.setTempAnnotationObj(el.innerHTML)
+    const paddingStatus = serviceStore.offPaddingStatus()
 
     // TODO useRoute를 통해서 route 객체를 얻어온 후, route.path를 watch > 경로 변경 감지. 파라미터 전달 X
-    router.replace({ name: 'templateEditor', params: { docId: selectDocId } })
+    router.replace({ name: 'templateEditor', params: { docId: selectDocId, paddingFlag: paddingStatus} })
   }
 }
 

@@ -40,6 +40,7 @@
     border-radius: 50%;
   }
   #preview-container .template-layer {
+    padding: 40px 80px 10px;
   }
 
   .template-layer {

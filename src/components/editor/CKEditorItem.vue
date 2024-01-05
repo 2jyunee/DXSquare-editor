@@ -5,12 +5,25 @@
     padding: 40px 80px 10px;
     min-height: 700px;
 }
+
+.padding-none .ck.ck-editor__editable_inline {
+    overflow: auto;
+    padding: 0;
+    min-height: 700px;
+}
+.padding-none .ck.ck-editor__editable_inline>:last-child { 
+    margin-bottom: 0;
+}
+
+.padding-none .ck.ck-editor__editable_inline>:first-child {
+    margin-top: 0;
+}
 </style>
 <template>
 
     <div style="background-color: #ffffff;">
         
-        <ckeditor id="doc-container" :editor="editor" :config= "editorConfig" v-model="editorData" @ready="onEditorReady"></ckeditor>
+        <ckeditor id="doc-container" :class="paddingNone" :editor="editor" :config= "editorConfig" v-model="editorData" @ready="onEditorReady"></ckeditor>
         <!-- <div id="presence-list-container"></div>
         <div id="outline" class="document-outline-container"></div>
         <div id="doc-container"></div>
@@ -37,12 +50,13 @@
   import { useEditorStore, useServiceStore } from '@/stores/service'
 
   const props = defineProps({
-    contents: { type: String, required: false, default: '' }
+    contents: { type: String, required: false, default: '' },
+    paddingFlag: {type: Boolean, required: false, default: false}
   })
 
 
   //page-break ck-widget
-  
+  const paddingNone = ref('')
   const editor = ref(BalloonEditor)
   const editorData = ref(props.contents)
   const editorConfig = ref({})
@@ -137,7 +151,6 @@
   const serviceStore = useServiceStore()
 
   const onEditorReady = (editor) => {
-    debugger
     editorStore.setEditorObject(editor)
     const command = editor.commands.get('pageBreak')
     command.on('execute', async () => {
@@ -186,6 +199,8 @@
 
 
   onMounted(() => {
+    if(!props.paddingFlag) paddingNone.value = 'padding-none'
+    else paddingNone.value = ''
     
     // editorStore.setEditorObject(editor.value)
     // CKEDITOR.ClassicEditor.create( document.querySelector( '#doc-container' ), {
