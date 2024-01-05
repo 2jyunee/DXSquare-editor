@@ -4,7 +4,7 @@
       <div class="title space-x-3">
         <input type="text" v-model="documentTitle" style="border:none; font-size: 35px; padding:0;"/>
       </div>
-      <div class="doc-control-1 space-x-5">
+      <div class="doc-control-1 space-x-5" style="display: none;">
         <select class="pt-0.5 pr-10 pb-0.5 pl-2.5" name="zoom-value" v-show="false">
           <option value="50">50%</option>
           <option value="75">75%</option>
@@ -18,10 +18,10 @@
         <button><i class="fa-regular fa-images"></i></button>
         <button><i class="fa-solid fa-rotate-left"></i></button>
         <button><i class="fa-solid fa-rotate-right"></i></button>
-        <button @click="toggleEditor"><i :class="toggleIconClass"></i></button>
       </div>
       <div class="doc-control-2 space-x-5">
-        <button @click="showSaveModal"><i class="fa-regular fa-floppy-disk"></i></button>
+        <button @click="toggleEditor" v-if="pathname!='/doc/editor'"><i :class="toggleIconClass"></i></button>
+        <button @click="showSaveModal" v-else><i class="fa-regular fa-floppy-disk"></i></button>
         <button @click="exitEditor">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
@@ -40,7 +40,7 @@
   ></saveModal>
 </template>
 <script setup lang="ts">
-import { ref,watch } from 'vue'
+import { onMounted, ref,watch } from 'vue'
 import { useTemplateStore, useDocStore, type ItemplateImg } from '@/stores/document'
 import { useServiceStore, useEditorStore } from '@/stores/service'
 import saveModal from '@/components/modal/TemplateSaveModal.vue'
@@ -57,6 +57,9 @@ const route = useRoute()
 const isShowSaveModal = ref(false)
 const toggleIconClass = ref('fa-regular fa-pen-to-square')
 const documentTitle = ref(templateStore.getSelectTemplateName() || '무제')
+
+const pathname = ref(window.location.pathname || '/doc/editor')
+
 
 watch(()=>route.path, (cur, pre)=>{
   
@@ -201,10 +204,10 @@ const goBackDocumentEditor = async () => {
 
 }
 
-
 const exitEditor = ()=>{
   router.push({path: '/'})
 }
+
 </script>
 
 <style scoped></style>
