@@ -1,7 +1,7 @@
 <template>
   <ul class="md:flex-col md:min-w-full flex flex-col list-none thumbnail-container">
     <li class="items-center thumbnail-img-container" v-for="(item, idx) in templateImages" :key="idx">
-      <div class="border p-2 thumbnail">
+      <div class="border p-2 thumbnail" v-if="item != 'data:,'">
         <img class="thumbnail-img" :src="item" />
       </div>
     </li>
