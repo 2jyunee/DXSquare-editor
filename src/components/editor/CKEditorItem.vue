@@ -2,26 +2,26 @@
 .ck.ck-editor__editable_inline {
     border: 1px solid transparent;
     overflow: auto;
-    min-height: 70vh;
-    padding: 0 var(--ck-spacing-standard);
+    padding: 40px 80px 10px;
+    min-height: 700px;
 }
 </style>
 <template>
 
-  <div style="background-color: #ffffff;">
-    
-    <ckeditor id="doc-container" :editor="editor" :config= "editorConfig" v-model="editorData" @ready="onEditorReady"></ckeditor>
-    <!-- <div id="presence-list-container"></div>
-    <div id="outline" class="document-outline-container"></div>
-    <div id="doc-container"></div>
-    <div class="sidebar" id="sidebar"></div>
-  </div>
-  <div id="revision-viewer-container">
-    <div class="container">
-        <div id="revision-viewer-editor"></div>
-        <div class="sidebar" id="revision-viewer-sidebar"></div>
-    </div>-->
-  </div>
+    <div style="background-color: #ffffff;">
+        
+        <ckeditor id="doc-container" :editor="editor" :config= "editorConfig" v-model="editorData" @ready="onEditorReady"></ckeditor>
+        <!-- <div id="presence-list-container"></div>
+        <div id="outline" class="document-outline-container"></div>
+        <div id="doc-container"></div>
+        <div class="sidebar" id="sidebar"></div>
+    </div>
+    <div id="revision-viewer-container">
+        <div class="container">
+            <div id="revision-viewer-editor"></div>
+            <div class="sidebar" id="revision-viewer-sidebar"></div>
+        </div>-->
+    </div>
 </template>
 
 
