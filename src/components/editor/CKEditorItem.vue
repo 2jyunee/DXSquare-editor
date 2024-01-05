@@ -161,6 +161,8 @@
             let domElems = new DOMParser().parseFromString(curHtmlStr, "text/html")
             let contentDomElem = Array.from(domElems.body.children)
             let container = document.createElement('div')
+            container.style.position = 'absolute'
+            container.style.top = '-99999px'
 
             for (let i = 0; i < contentDomElem!.length; i++) {
                 if (contentDomElem[i].className.indexOf('page-break') > -1) {
@@ -173,6 +175,8 @@
                     document.body.removeChild(container)
                     container.remove()
                     container = document.createElement('div')
+                    container.style.position = 'absolute'
+                    container.style.top = '-99999px'
                 } else {
                     container.appendChild(contentDomElem[i])
                 }

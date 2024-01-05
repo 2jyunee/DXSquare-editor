@@ -38,12 +38,14 @@ onMounted(async ()=>{
 
     let contentDomElem = Array.from(domElems.querySelector('.ck-content')?.children!)
     let container = document.createElement('div')
-    container.setAttribute('style', 'display:hidden')
+    container.style.top = '-99999px'
+    container.style.position = 'absolute'
 
     for (let i = 0; i < contentDomElem!.length; i++) {
       if (contentDomElem[i].className.indexOf('page-break') > -1) {
         // TODO 썸네일 만들기
         document.body.appendChild(container);
+        debugger;
 
         let canvas = await htmlToCanvas(container)
 
@@ -53,7 +55,8 @@ onMounted(async ()=>{
         document.body.removeChild(container)
         container.remove()
         container = document.createElement('div')
-        container.setAttribute('style', 'display:hidden')
+        container.style.top = '-99999px'
+        container.style.position = 'absolute'
 
       } else {
         container.appendChild(contentDomElem[i])
