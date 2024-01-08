@@ -39,12 +39,7 @@
                   class="text-squareColorPurple-100 fill-current"
                 ></polygon>
               </svg>
-              <h4 class="text-xl font-bold text-white">Great for your awesome project</h4>
-              <p class="text-md font-light mt-2 text-white">
-                Putting together a page has never been easier than matching together pre-made
-                components. From landing pages presentation to login areas, you can easily customise
-                and built your pages.
-              </p>
+              <h4 class="text-xl font-bold text-white" style="font-size: -webkit-xxx-large;line-height: inherit;">Sign Square Pilot Project</h4>
             </blockquote>
           </div>
         </div>
@@ -52,7 +47,7 @@
         <div class="w-full md:w-6/12 px-4">
           <div class="flex flex-wrap">
             <div class="w-full md:w-6/12 px-4">
-              <div class="relative flex flex-col min-w-0 mt-4">
+              <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div
                     class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
@@ -105,7 +100,7 @@
                     준비된 서식문서를<br />불러옵니다.
                     <a
                       @click="showSelectTemplateModal(true)"
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block">
+                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block" style="margin-top: 68px;">
                       템플릿 문서 시작하기
                     </a>
                   </div>
@@ -124,7 +119,7 @@
                     <a
                       href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus?ref=vn-index"
                       target="_blank"
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
+                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block" style="margin-top: 44px;"
                     >
                       계약 문서 발송
                     </a>
@@ -137,7 +132,7 @@
       </div>
     </div>
 
-    <div class="container mx-auto px-4 pb-32 pt-48">
+    <div class="container mx-auto px-4 pb-32 pt-48" style="display: none;">
       <div class="items-center flex flex-wrap">
         <div class="w-full md:w-5/12 ml-auto px-12 md:px-4">
           <div class="md:pr-12">
