@@ -59,7 +59,7 @@
                     계약문서를 만들기 전<br />서식문서가 없나요?<br />걱정하지 말고<br />여기부터
                     시작하세요.
                     <a
-                    class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
+                    class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block cursor-pointer"
                       @click="moveCreateTemplatePage"
                     >
                       서식 문서 시작 하기
@@ -78,7 +78,7 @@
                   <div class="mb-4 text-blueGray-500">
                     마지막 단계네요!<br />완성된 템플릿 문서로<br />계약을 진행하세요.
                     <a
-                      class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block"
+                      class="get-started text-white mt-5 font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-emerald-500 active:bg-emerald-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block cursor-pointer"
                       @click="showSelectDocumentModal"
                     >
                       계약 시작하기
@@ -100,7 +100,7 @@
                     준비된 서식문서를<br />불러옵니다.
                     <a
                       @click="showSelectTemplateModal(true)"
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block" style="margin-top: 68px;">
+                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block cursor-pointer" style="margin-top: 68px;">
                       템플릿 문서 시작하기
                     </a>
                   </div>
@@ -119,7 +119,7 @@
                     <a
                       href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus?ref=vn-index"
                       target="_blank"
-                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block" style="margin-top: 44px;"
+                      class="mt-5 mb-4 ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150 block cursor-pointer" style="margin-top: 44px;"
                     >
                       계약 문서 발송
                     </a>

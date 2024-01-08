@@ -7,7 +7,7 @@
       class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
     >
       <!-- Brand -->
-      <img class="lg:inline-block" :src="SignSquareLogo" width="130" @click="moveIndexPage" />
+      <img class="lg:inline-block" :src="SignSquareLogo" width="130" @click="moveIndexPage" style="cursor: pointer;"/>
       <!-- Form -->
       <!-- <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
         <div class="relative flex w-full flex-wrap items-stretch">
