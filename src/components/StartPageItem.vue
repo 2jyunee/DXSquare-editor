@@ -50,7 +50,7 @@
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
+                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-200"
                   >
                     <i class="fa-solid fa-1"></i>
                   </div>
@@ -70,7 +70,7 @@
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
+                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-orange-200"
                   >
                     <i class="fa-solid fa-3"></i>
                   </div>
@@ -91,7 +91,7 @@
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
+                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-200"
                   >
                     <i class="fa-solid fa-2"></i>
                   </div>
@@ -109,7 +109,7 @@
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
+                    class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-purple-200"
                   >
                     <i class="fa-solid fa-4"></i>
                   </div>
