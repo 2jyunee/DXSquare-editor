@@ -107,14 +107,14 @@ const saveDocToHtml = () => {
 
   let fileName = `${documentTitle.value}.html`
 
-  const blob = new Blob([htmlStr], { type: 'text/html' })
-  const path = window.URL.createObjectURL(blob)
+  // const blob = new Blob([htmlStr], { type: 'text/html' })
+  // const path = window.URL.createObjectURL(blob)
 
-  const link = document.createElement('a')
-  link.href = path
-  link.download = fileName
-  link.click()
-  link.remove() // IE 미지원
+  // const link = document.createElement('a')
+  // link.href = path
+  // link.download = fileName
+  // link.click()
+  // link.remove() // IE 미지원
 
   const docObj: ItemplateImg = {
     id: `${documentTitle}_${new Date().getTime()}`,
