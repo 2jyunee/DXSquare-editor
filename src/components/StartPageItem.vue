@@ -52,7 +52,7 @@
                   <div
                     class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
                   >
-                    <i class="fas fa-newspaper"></i>
+                    <i class="fa-solid fa-1"></i>
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">서식 만들기</h6>
                   <div class="mb-4 text-blueGray-500">
@@ -72,7 +72,7 @@
                   <div
                     class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
                   >
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fa-solid fa-3"></i>
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">서식 테스트(DEV)</h6>
                   <div class="mb-4 text-blueGray-500">
@@ -93,7 +93,7 @@
                   <div
                     class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
                   >
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fa-solid fa-2"></i>
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">템플릿 테스트(DEV)</h6>
                   <div class="mb-4 text-blueGray-500">
@@ -111,7 +111,7 @@
                   <div
                     class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"
                   >
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fa-solid fa-4"></i>
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">계약 하기</h6>
                   <div class="mb-4 text-blueGray-500">
