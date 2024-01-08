@@ -2,7 +2,7 @@
   <div class="bg-white pt-2 pb-2 pl-5 pr-5 border"  style="font-size: 35px;">
     <div class="flex flex-nowrap justify-between md:px-10 px-4">
       <div class="title space-x-3">
-        <input type="text" v-model="documentTitle" style="border:none; font-size: 35px; padding:0;"/>
+        <input type="text" v-model="documentTitle" style="border:none; font-size: 35px; padding:0;" :placeholder="titlePlaceholder"/>
       </div>
       <div class="doc-control-1 space-x-5" style="display: none;">
         <select class="pt-0.5 pr-10 pb-0.5 pl-2.5" name="zoom-value" v-show="false">
@@ -56,8 +56,8 @@ const route = useRoute()
 
 const isShowSaveModal = ref(false)
 const toggleIconClass = ref('fa-regular fa-pen-to-square')
-const documentTitle = ref(templateStore.getSelectTemplateName() || '무제')
-
+const documentTitle = ref(templateStore.getSelectTemplateName())
+const titlePlaceholder = "제목을 입력해주세요."
 const pathname = ref(window.location.pathname || '/doc/editor')
 
 
@@ -95,8 +95,10 @@ const saveDocToHtml = () => {
   htmlStr += '<meta name="viewport" content="width=device-width, inital-scale=1.0">'
   htmlStr += '<title>Document</title>'
   htmlStr += '</head>'
-  htmlStr += '<body>'
+  htmlStr += '<body width:100%;position: absolute;align-items: center;display: flex;justify-content: center;">'
+  htmlStr += '<div style="width:800px">'
   htmlStr += bodyStr.replace(/(data-v-\w*\=\"\"\s)/gi, '')
+  htmlStr += '</div>'
   htmlStr += '</body>'
   htmlStr += '</html>'
 
@@ -126,8 +128,7 @@ const saveTemplate = async (title) => {
   // const editorHtmlElem = document.getElementById('doc-container')   // CKEditor
   const editorHtmlElem = document.querySelector('#doc-container')
   isShowSaveModal.value = false
-  debugger
-  
+
   const canvas = await htmlToCanvas(editorHtmlElem.firstChild)
   
   let children:HTMLCollection = (editorHtmlElem.firstChild.children) as HTMLCollection;
@@ -144,7 +145,7 @@ const saveTemplate = async (title) => {
     id: `${title}_${new Date().getTime()}`,
     imgDataStr: t,
     fileName: title,
-    htmlStr: editorHtmlElem?.innerHTML == '<br data-cke-filler="true">' ? '' : editorHtmlElem?.outerHTML
+    htmlStr: editorStore.getEditorObject().getData()
   }
 
   templateStore.saveTemplate(imageObj)
@@ -161,6 +162,17 @@ const toggleEditor = () => {
   let selectDocId = templateStore.getSelectTemplateId()
   
   if(!selectDocId) {
+
+    if( documentTitle.value == ""){
+      alert("제목을 입력해주세요.");
+      return;
+    }
+
+    if(editorStore.getEditorObject().getData() == ""){
+      alert("내용을 입력해주세요.");
+      return;
+    }
+
     // 템플릿 편집 모드 -> 배치 모드
     toggleIconClass.value = 'fa-regular fa-hand-pointer'
     saveTemplate(documentTitle.value)
